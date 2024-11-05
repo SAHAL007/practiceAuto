@@ -29,6 +29,7 @@ class ProjectDetailsPage:
     video_check_box_next_button = (By.XPATH,'//*[@id="root"]/div/div[3]/div/div/div[2]/div[2]/div[2]/button[2]')
     budget_input =(By.XPATH,'/html/body/div[1]/div/div[3]/div/div/div[2]/div[2]/div[1]/div/div[1]/div/div/div[1]/div/textarea')
     scrollCalendarWindow =(By.TAG_NAME,'body')
+
     def click_film_next(self):
         self.driver.find_element(*self.film_next_button).click()
 
@@ -76,31 +77,20 @@ class ProjectDetailsPage:
 
 
 
-
-
-
-
-
-
-    # Locator for next month button if November is not displayed
     calendar_next_button = (By.XPATH, "//button[@data-direction='next']")
     calendar_month_label = (By.XPATH, "//button[contains(@class, 'mantine-DatePicker-calendarHeaderLevel')]")
 
     def select_date(self, month_year, day):
-        # Wait for the calendar to be visible
-        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(self.calendar_month_label))
 
-        # Keep clicking "Next" until the correct month and year are displayed
+        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(self.calendar_month_label))
         while True:
             current_month = self.driver.find_element(*self.calendar_month_label).text
-            if current_month == month_year:  # e.g., "November 2024"
+            if current_month == month_year:
                 break
             else:
-                # Click the "next" button to navigate months
                 self.driver.find_element(*self.calendar_next_button).click()
                 WebDriverWait(self.driver, 2).until(EC.text_to_be_present_in_element(self.calendar_month_label, current_month))
 
-        # Select the specific day
         day_button_xpath = f"//button[@aria-label='{day} {month_year}']"
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, day_button_xpath)))
         self.driver.find_element(By.XPATH, day_button_xpath).click()
