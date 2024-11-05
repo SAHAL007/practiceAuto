@@ -70,16 +70,21 @@ def test_project_creation_and_navigation(driver):
     project_details_page.enter_log_line("In a game where passion meets strategy, the last-minute goal tells the real story")
     time.sleep(5)
     project_details_page.select_log_line_next()
-    time.sleep(25)
+    time.sleep(20)
     project_details_page.scroll_video_check_box(Keys.PAGE_DOWN)
     time.sleep(5)
     project_details_page.select_video_check_box()
     time.sleep(5)
     project_details_page.select_video_check_box_next_button()
     time.sleep(5)
+    project_details_page.enter_budget("$500")
+    project_details_page.scroll_calendar_page(Keys.PAGE_DOWN)
+    time.sleep(10)
+    project_details_page.select_date("November 2024", "29")
+    time.sleep(10)
 
 
-
+    print("Current title of the website is "+driver.title)
     projects_page.click_sign_out()
     print("Signed out successfully.")
     time.sleep(2)
