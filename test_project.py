@@ -6,6 +6,7 @@ from selenium import webdriver
 from pages.login_page import LoginPage
 from pages.projects_page import ProjectsPage
 from pages.project_details_page import ProjectDetailsPage
+from selenium.webdriver.common.keys import Keys
 
 
 
@@ -63,12 +64,14 @@ def test_project_creation_and_navigation(driver):
     time.sleep(5)
     project_details_page.enter_name("sahal")
     project_details_page.enter_website("sahal.com")
-    project_details_page.enter_target_audience("age between 15 to 50 years old")
+    project_details_page.enter_target_audience("age between 15 to 50 years old ")
     time.sleep(5)
     project_details_page.select_next_button_input()
     project_details_page.enter_log_line("In a game where passion meets strategy, the last-minute goal tells the real story")
     time.sleep(5)
     project_details_page.select_log_line_next()
+    time.sleep(25)
+    project_details_page.scroll_video_check_box(Keys.PAGE_DOWN)
     time.sleep(5)
     project_details_page.select_video_check_box()
     time.sleep(5)

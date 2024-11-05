@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
 class ProjectDetailsPage:
     def __init__(self, driver):
@@ -21,6 +22,8 @@ class ProjectDetailsPage:
     next_button_input_field =(By.XPATH,'//*[@id="root"]/div/div[3]/div/div/div[2]/div[2]/div[2]/button[2]')
     log_line_input =(By.XPATH,'/html/body/div[1]/div/div[3]/div/div/div[2]/div[2]/div[1]/div/div/div/div/div/div/textarea')
     log_line_next_button= (By.XPATH,'//*[@id="root"]/div/div[3]/div/div/div[2]/div[2]/div[2]/button[2]')
+    # implement scroll
+    scrollWindow =(By.TAG_NAME,'body')
     video_check_box =(By.XPATH,'/html/body/div[1]/div/div[3]/div/div/div[2]/div[2]/div[1]/div/div[1]/div/div/div[4]/div[2]/div[2]/div/div[1]/input')
     video_check_box_next_button = (By.XPATH,'//*[@id="root"]/div/div[3]/div/div/div[2]/div[2]/div[2]/button[2]')
 
@@ -59,6 +62,9 @@ class ProjectDetailsPage:
         self.driver.find_element(*self.log_line_next_button).click()
     def select_video_check_box(self):
         self.driver.find_element(*self.video_check_box).click()
+    def scroll_video_check_box(self, up):
+        self.driver.find_element(*self.scrollWindow).send_keys(up)
+        #self.driver.execute_script("window.scrollBy(0, 500)")
     def select_video_check_box_next_button(self):
         self.driver.find_element(*self.video_check_box_next_button).click()
 
