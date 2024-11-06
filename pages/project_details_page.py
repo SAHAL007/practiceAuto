@@ -26,10 +26,15 @@ class ProjectDetailsPage:
     log_line_next_button= (By.XPATH,'//*[@id="root"]/div/div[3]/div/div/div[2]/div[2]/div[2]/button[2]')
     # implement scroll
     scrollWindow =(By.TAG_NAME,'body')
-    video_check_box =(By.XPATH,'/html/body/div[1]/div/div[3]/div/div/div[2]/div[2]/div[1]/div/div[1]/div/div/div[4]/div[2]/div[2]/div/div[1]/input')
+    video_check_box =(By.XPATH,'/html/body/div[1]/div/div[3]/div/div/div[2]/div[2]/div[1]/div/div[1]/div/div/div[4]/div/div[2]/div/div[1]/input')
     video_check_box_next_button = (By.XPATH,'//*[@id="root"]/div/div[3]/div/div/div[2]/div[2]/div[2]/button[2]')
     budget_input =(By.XPATH,'/html/body/div[1]/div/div[3]/div/div/div[2]/div[2]/div[1]/div/div[1]/div/div/div[1]/div/textarea')
     scrollCalendarWindow =(By.TAG_NAME,'body')
+    calendar_next =(By.XPATH,'/html/body/div[1]/div/div[3]/div/div/div[2]/div[2]/div[2]/button[2]')
+    scroll_button_creative_page =(By.TAG_NAME,'body')
+    download_button =(By.XPATH,'/html/body/div[1]/div/div[3]/div/div/div[2]/div[2]/div[1]/div/div[1]/div/div/button')
+    next_button_creative_page =(By.XPATH,'/html/body/div[1]/div/div[3]/div/div/div[2]/div[2]/div[2]/button[2]')
+
 
     def click_film_next(self):
         self.driver.find_element(*self.film_next_button).click()
@@ -99,8 +104,10 @@ class ProjectDetailsPage:
         self.driver.find_element(*self.video_check_box_next_button).click()
 
     def enter_budget(self, amount):
-        self.driver.find_element(*self.budget_input).clear()
-        self.driver.find_element(*self.budget_input).send_keys(amount)
+        budget_field = self.driver.find_element(*self.budget_input)
+        budget_field.send_keys(Keys.CONTROL + "a")
+        budget_field.send_keys(Keys.DELETE)
+        budget_field.send_keys(amount)
 
     def scroll_calendar_page(self, low):
         self.driver.find_element(*self.scrollCalendarWindow).send_keys(low)
@@ -124,3 +131,16 @@ class ProjectDetailsPage:
         day_button_xpath = f"//button[@aria-label='{day} {month_year}']"
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, day_button_xpath)))
         self.driver.find_element(By.XPATH, day_button_xpath).click()
+
+    def select_calender_next(self):
+        self.driver.find_element(*self.calendar_next_button).click()
+
+    def scroll_creative_page(self, down):
+        self.driver.find_element(*self.scroll_button_creative_page).send_keys(down)
+
+
+    def select_download_pdf(self):
+        self.driver.find_element(*self.download_button).click()
+
+    def select_next_button_creative_page(self):
+        self.driver.find_element(*self.next_button_creative_page).click()
