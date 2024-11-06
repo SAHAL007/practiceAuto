@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
 
 class ProjectDetailsPage:
     def __init__(self, driver):
@@ -42,8 +43,10 @@ class ProjectDetailsPage:
 
     def click_qualities_next(self):
         self.driver.find_element(*self.qualities_next_button).click()
+
     def select_film_length(self):
         self.driver.find_element(*self.film_length_button).click()
+
     def select_hosting_site(self):
         self.driver.find_element(*self.film_hosting_site_web).click()
         self.driver.find_element(*self.film_hosting_site_youTube).click()
@@ -51,27 +54,54 @@ class ProjectDetailsPage:
 
     def select_next_hosting(self):
         self.driver.find_element(*self.next_button_hosting_site).click()
+    """
     def enter_name(self, name):
-        self.driver.find_element(*self.name_input_field).send_keys(name)
+        self.driver.find_element(*self.name_input_field).clear()
+        self.driver.find_element(*self.name_input_field).send_keys(name)"""
+    def enter_name(self, name):
+        name_field = self.driver.find_element(*self.name_input_field)
+        name_field.send_keys(Keys.CONTROL + "a")
+        name_field.send_keys(Keys.DELETE)
+        name_field.send_keys(name)
+
     def enter_website(self,website):
-        self.driver.find_element(*self.website_input_field).send_keys(website)
+        website_field = self.driver.find_element(*self.website_input_field)
+        website_field.send_keys(Keys.CONTROL + "a")
+        website_field.send_keys(Keys.DELETE)
+        website_field.send_keys(website)
+
     def enter_target_audience(self,text):
-        self.driver.find_element(*self.target_audience_input_field).send_keys(text)
+        target_audience_field =self.driver.find_element(*self.target_audience_input_field)
+        target_audience_field.send_keys(Keys.CONTROL + "a")
+        target_audience_field.send_keys(Keys.DELETE)
+        target_audience_field.send_keys(text)
+
     def select_next_button_input(self):
         self.driver.find_element(*self.next_button_input_field).click()
+
     def enter_log_line(self, log):
-        self.driver.find_element(*self.log_line_input).send_keys(log)
+        log_line_field =self.driver.find_element(*self.log_line_input)
+        log_line_field.send_keys(Keys.CONTROL + "a")
+        log_line_field.send_keys(Keys.DELETE)
+        log_line_field.send_keys(log)
+
     def select_log_line_next(self):
         self.driver.find_element(*self.log_line_next_button).click()
+
     def select_video_check_box(self):
         self.driver.find_element(*self.video_check_box).click()
+
     def scroll_video_check_box(self, down):
         self.driver.find_element(*self.scrollWindow).send_keys(down)
         #self.driver.execute_script("window.scrollBy(0, 500)")
+
     def select_video_check_box_next_button(self):
         self.driver.find_element(*self.video_check_box_next_button).click()
+
     def enter_budget(self, amount):
+        self.driver.find_element(*self.budget_input).clear()
         self.driver.find_element(*self.budget_input).send_keys(amount)
+
     def scroll_calendar_page(self, low):
         self.driver.find_element(*self.scrollCalendarWindow).send_keys(low)
 

@@ -79,9 +79,9 @@ def test_project_creation_and_navigation(driver):
     time.sleep(5)
     project_details_page.enter_budget("$500")
     project_details_page.scroll_calendar_page(Keys.PAGE_DOWN)
-    time.sleep(10)
+    time.sleep(15)
     project_details_page.select_date("November 2024", "29")
-    time.sleep(10)
+    time.sleep(20)
 
 
     print("Current title of the website is "+driver.title)
