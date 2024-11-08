@@ -34,6 +34,11 @@ class ProjectDetailsPage:
     scroll_button_creative_page =(By.TAG_NAME,'body')
     download_button =(By.XPATH,'/html/body/div[1]/div/div[3]/div/div/div[2]/div[2]/div[1]/div/div[1]/div/div/button')
     next_button_creative_page =(By.XPATH,'/html/body/div[1]/div/div[3]/div/div/div[2]/div[2]/div[2]/button[2]')
+    scroll_script_window =(By.TAG_NAME,'body')
+    next_button_script =(By.XPATH,'//*[@id="root"]/div/div[3]/div/div/div[2]/div[2]/div[2]/button[2]')
+    dropdown_input_field = (By.XPATH, "//input[@class='m_8fb7ebe7 mantine-Input-input mantine-Select-input' and @aria-haspopup='listbox']")
+    cinematic_option = (By.XPATH, "//div[@role='option' and normalize-space()='Cinematic']")
+    next_story_board =(By.XPATH,'/html/body/div[1]/div/div[3]/div/div/div[2]/div[2]/div[2]/button[2]')
 
 
     def click_film_next(self):
@@ -144,3 +149,18 @@ class ProjectDetailsPage:
 
     def select_next_button_creative_page(self):
         self.driver.find_element(*self.next_button_creative_page).click()
+
+    def scroll_script_page(self,down):
+        self.driver.find_element(*self.scroll_script_window).send_keys(down)
+    def select_next_button_script(self):
+        self.driver.find_element(*self.next_button_script).click()
+
+    def select_cinematic_dropdown(self):
+        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(*self.dropdown_input_field)).click()
+    def select_cinematic_option(self):
+        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(*self.cinematic_option)).click()
+
+    def select_next_story_button(self):
+        self.driver.find_element(*self.next_story_board).click()
+
+

@@ -98,6 +98,17 @@ def test_project_creation_and_navigation(driver):
     time.sleep(15)
     print("pdf download successfully")
     project_details_page.select_next_button_creative_page()
+    project_details_page.scroll_script_page(Keys.PAGE_DOWN)
+    project_details_page.scroll_script_page(Keys.PAGE_DOWN)
+    project_details_page.select_next_button_script()
+    print("Dropdown field is visible and clickable.")
+ #   project_details_page.select_cinematic_dropdown()
+ #   project_details_page.select_cinematic_option()
+    time.sleep(10)
+    project_details_page.select_next_story_button()
+    time.sleep(35)
+    driver.save_screenshot("Storyboard.png")
+
 
 
     print("Current title of the website is : "+driver.title)
