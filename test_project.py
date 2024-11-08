@@ -104,3 +104,5 @@ def test_project_creation_and_navigation(driver):
     projects_page.click_sign_out()
     print("Signed out successfully.")
     time.sleep(2)
+
+    print("git status test")
