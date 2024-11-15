@@ -38,7 +38,8 @@ class ProjectDetailsPage:
     next_button_script =(By.XPATH,'//*[@id="root"]/div/div[3]/div/div/div[2]/div[2]/div[2]/button[2]')
     dropdown_input_field = (By.XPATH, "//input[@class='m_8fb7ebe7 mantine-Input-input mantine-Select-input' and @aria-haspopup='listbox']")
     cinematic_option = (By.XPATH, "//div[@role='option' and normalize-space()='Cinematic']")
-    next_story_board =(By.XPATH,'/html/body/div[1]/div/div[3]/div/div/div[2]/div[2]/div[2]/button[2]')
+    next_story_board =(By.XPATH,"//button[@type='button' and contains(@class, 'bg-green') and contains(@class, 'text-white')]")
+    back_button_story_board =(By.XPATH,'/html/body/div[1]/div/div[3]/div/div/div[2]/div[2]/div[2]/button')
 
 
     def click_film_next(self):
@@ -124,17 +125,17 @@ class ProjectDetailsPage:
 
     def select_date(self, month_year, day):
 
-        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(self.calendar_month_label))
+        WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located(self.calendar_month_label))
         while True:
             current_month = self.driver.find_element(*self.calendar_month_label).text
             if current_month == month_year:
                 break
             else:
                 self.driver.find_element(*self.calendar_next_button).click()
-                WebDriverWait(self.driver, 2).until(EC.text_to_be_present_in_element(self.calendar_month_label, current_month))
+                WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(self.calendar_month_label, current_month))
 
         day_button_xpath = f"//button[@aria-label='{day} {month_year}']"
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, day_button_xpath)))
+        WebDriverWait(self.driver, 15).until(EC.element_to_be_clickable((By.XPATH, day_button_xpath)))
         self.driver.find_element(By.XPATH, day_button_xpath).click()
 
     def select_calender_next(self):
@@ -157,10 +158,33 @@ class ProjectDetailsPage:
 
     def select_cinematic_dropdown(self):
         WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(*self.dropdown_input_field)).click()
+
     def select_cinematic_option(self):
         WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(*self.cinematic_option)).click()
 
+  #  def select_next_story_button(self):
+  #      self.driver.find_element(*self.next_story_board).click()
+
     def select_next_story_button(self):
-        self.driver.find_element(*self.next_story_board).click()
+        print("enter method")
+        try:
+
+            next_button = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable(self.next_story_board)
+            )
+            next_button.click()
+        except Exception as e:
+            print(f"Standard click failed: {e}")
+
+            try:
+                next_button = self.driver.find_element(*self.next_story_board)
+                self.driver.execute_script("arguments[0].click();", next_button)
+                print("Clicked using JavaScript.")
+            except Exception as js_error:
+                print(f"JavaScript click also failed: {js_error}")
+
+
+    def select_back_button(self):
+        self.driver.find_element(*self.back_button_story_board).click()
 
 

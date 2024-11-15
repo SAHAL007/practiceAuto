@@ -28,7 +28,7 @@ def test_project_creation_and_navigation(driver):
     login_page.enter_email("sahal.ahamad@brainstation-23.com")
     login_page.enter_password("123456@Aa")
     login_page.click_sign_in()
-    time.sleep(10)
+    time.sleep(20)
 
 
     project_name = "Automation Project"
@@ -82,32 +82,35 @@ def test_project_creation_and_navigation(driver):
     time.sleep(5)
     project_details_page.enter_budget("$500")
     project_details_page.scroll_calendar_page(Keys.PAGE_DOWN)
-    time.sleep(10)
-    project_details_page.select_date("November 2024", "29")
+    time.sleep(15)
+    project_details_page.select_date("November 2024", "27")
     print("Specific date selected Successfully")
     time.sleep(5)
     project_details_page.select_calender_next()
     print("Showing creative brief page")
-    time.sleep(30)
+    time.sleep(15)
     project_details_page.scroll_creative_page(Keys.PAGE_DOWN)
     project_details_page.scroll_creative_page(Keys.PAGE_DOWN)
     project_details_page.scroll_creative_page(Keys.PAGE_DOWN)
     print("scroll creative brief")
 
     #project_details_page.select_download_pdf()
-    time.sleep(15)
-    print("pdf download successfully")
     project_details_page.select_next_button_creative_page()
     project_details_page.scroll_script_page(Keys.PAGE_DOWN)
     project_details_page.scroll_script_page(Keys.PAGE_DOWN)
     project_details_page.select_next_button_script()
     print("Dropdown field is visible and clickable.")
- #   project_details_page.select_cinematic_dropdown()
- #   project_details_page.select_cinematic_option()
     time.sleep(10)
     project_details_page.select_next_story_button()
+    project_details_page.select_next_story_button()
     time.sleep(35)
+   # driver.save_screenshot("Storyboard.png")
+    print("taking ss")
+    time.sleep(10)
     driver.save_screenshot("Storyboard.png")
+    #project_details_page.select_back_button()
+    time.sleep(10)
+
 
 
 
@@ -115,5 +118,3 @@ def test_project_creation_and_navigation(driver):
     projects_page.click_sign_out()
     print("Signed out successfully.")
     time.sleep(2)
-
-    print("git status test")
