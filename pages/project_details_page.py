@@ -1,7 +1,11 @@
+import time
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
+from os import times
+
 
 class ProjectDetailsPage:
     def __init__(self, driver):
@@ -152,7 +156,12 @@ class ProjectDetailsPage:
         self.driver.find_element(*self.next_button_creative_page).click()
 
     def scroll_script_page(self,down):
+
         self.driver.find_element(*self.scroll_script_window).send_keys(down)
+        self.driver.find_element(*self.scroll_script_window).send_keys(down)
+        print("Fim Script Page")
+        time.sleep(40)
+
     def select_next_button_script(self):
         self.driver.find_element(*self.next_button_script).click()
 
