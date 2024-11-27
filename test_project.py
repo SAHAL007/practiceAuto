@@ -28,7 +28,9 @@ def test_project_creation_and_navigation(driver):
     login_page.enter_email("sahal.ahamad@brainstation-23.com")
     login_page.enter_password("123456@Aa")
     login_page.click_sign_in()
-    time.sleep(20)
+    time.sleep(10)
+    login_page.select_my_projects()
+    time.sleep(15)
 
 
     project_name = "Automation Project"

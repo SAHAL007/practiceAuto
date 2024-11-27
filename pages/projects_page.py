@@ -13,7 +13,7 @@ class ProjectsPage:
     project_name_field = (By.XPATH, "/html/body/div[3]/div/div/div[2]/section/div/div[1]/div/input")
     create_project_button = (By.XPATH, "//span[contains(text(),'Create')]")
     open_project_button = (By.XPATH, "//div[contains(text(),'Automation Project')]/following-sibling::div/a/button/span/span")
-    sign_out_button = (By.XPATH, '//*[@id="root"]/div/div[2]/div[2]/div[2]/div')
+    sign_out_button = (By.XPATH, '//*[@id="root"]/div/div[2]/div[2]/div[3]/div')
 
 
     def is_project_exist(self, project_name):

@@ -9,6 +9,7 @@ class LoginPage:
     email_field = (By.ID, 'email')
     password_field = (By.ID, 'password')
     sign_in_button = (By.XPATH, '//*[@id="root"]/div/div/div[2]/form/button/span/span')
+    open_my_projects =(By.XPATH,"//span[normalize-space()='My Projects']")
 
 
     def load(self):
@@ -22,3 +23,5 @@ class LoginPage:
 
     def click_sign_in(self):
         self.driver.find_element(*self.sign_in_button).click()
+    def select_my_projects(self):
+        self.driver.find_element(*self.open_my_projects).click()
